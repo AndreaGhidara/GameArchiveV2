@@ -2,26 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer components {
+
+    /* Carousel */
+    .header-link-item {
+        @apply cursor-pointer text-xs font-medium opacity-75 transition duration-300 hover:opacity-100;
+    }
+
+    .carousel-btn-switch-card {
+        @apply absolute z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border-2 border-[#302e30] bg-[#ffffff] text-2xl opacity-75 transition duration-300 hover:opacity-100 md:h-12 md:w-12;
+    }
+
+    .carousel-btn-switch-card-left {
+        @apply right-1/2 top-1/2 translate-x-[-60px] translate-y-[100%] transform sm:translate-x-[-150px] md:translate-x-[-200px] lg:translate-x-[-350px];
+    }
+
+    .carousel-btn-switch-card-right {
+        @apply top-1/2 left-1/2 translate-x-[60px] translate-y-[100%] transform sm:translate-x-[150px] md:translate-x-[200px] lg:translate-x-[350px];
+    }
+
+    .carousel-indicator {
+        @apply absolute left-1/2 -bottom-4 flex h-5 w-24 -translate-x-1/2 transform items-center justify-center space-x-1 md:-bottom-10;
+    }
+
+    .carousel-indicator-dots {
+        @apply h-2 w-2 rounded-full bg-white opacity-50 transition-all duration-500 hover:w-4 hover:opacity-100;
+    }
+
+    .carousel-container {
+        @apply relative h-[160px] w-full sm:w-4/6 sm:h-[250px] lg:h-[400px] md:h-64;
+        perspective: 450px;
+        transform-style: preserve-3d
+    }
+
+    .carousel-item {
+        @apply absolute h-full w-full cursor-pointer overflow-hidden rounded-3xl drop-shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-700;
+    }
+
+    .title {
+        @apply text-4xl font-bold py-2
+    }
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bgGlass {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    text-shadow: 1px 1px rgb(99, 97, 97);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+* {
+
+    /* ===== Scrollbar CSS ===== */
+    /* Firefox */
+    * {
+        scrollbar-width: auto;
+        scrollbar-color: #f5f5f500 #ffffff;
+    }
+
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #ffffff00;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #ffffff00;
+        border-radius: 30px;
+        border: 10px solid #c2c2c2;
+    }
 }
