@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar, Search, Sidebar } from './components'
-import { ProvaContext } from './stores/GameContext'
 
 
 

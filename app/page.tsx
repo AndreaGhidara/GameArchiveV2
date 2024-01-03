@@ -14,6 +14,9 @@ export default function Home() {
     Service.callNewGamesRelase()
       .then((res) => {
         setNewRelase(res.data.results)
+        console.log(res);
+        
+
       })
       .catch((err) => {
         console.log(err);
@@ -34,19 +37,19 @@ export default function Home() {
     setGameRelase(games)
 
   }, [newRelase])
-  
+
   const [topMetacriticGame, setTopMetacriticGame] = useState<GameCard[]>([])
 
   useEffect(() => {
     Service.topMetacriticGame()
       .then((res) => {
         setTopMetacriticGame(res.data.results)
-        console.log(res.data.results)            
+        console.log(res.data.results)
       })
       .catch((err) => {
         console.log(err);
       })
-  },[])
+  }, [])
 
   return (
     <div className='w-full mx-auto text-center px-3'>
@@ -56,10 +59,9 @@ export default function Home() {
       </div>
       <h1 className='title'>Top Score</h1>
       <div className='grid gap-4 grid-cols-1 sm:grid-cols-2'>
-        {topMetacriticGame.map((game:any,index:number) => (
-            <CardGame key={index} name={game.name} id={game.id} background_image={game.background_image} metacritic={game.metacritic} genres={game.genres} />
+        {topMetacriticGame.map((game: any, index: number) => (
+          <CardGame key={index} name={game.name} id={game.id} background_image={game.background_image} metacritic={game.metacritic} genres={game.genres} />
         ))}
-
       </div>
     </div>
   )

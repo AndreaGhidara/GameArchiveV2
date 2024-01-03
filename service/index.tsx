@@ -8,8 +8,29 @@ let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
 
-let aMonthAgo = `${year}-${month - 1}-${day}`;
+function getMonthAgo() {
+    if (month === 1) {
+        return month = 12
 
+    } else {
+        return month - 1
+    }
+}
+
+function getYear() {
+    if (month === 1) {
+        return year - 1
+    }
+
+    return year
+}
+
+function getDay() {
+    return (day < 10 ? '0' : '') + day;
+}
+
+
+let aMonthAgo = `${getYear()}-${getMonthAgo()}-${getDay()}`;
 
 const BaseUrl = "https://api.rawg.io/api/games";
 
@@ -20,6 +41,7 @@ const Platforms = "https://api.rawg.io/api/platforms";
 const NewRelase = `${aMonthAgo},${currentDate}`;
 
 class serviceApi {
+
     //Categorie | Azione | Shoter | ECC..
     callCategories() {
         return axios.get(`${GenresUrl}?key=${process.env.NEXT_PUBLIC_KEY}`)
@@ -34,7 +56,7 @@ class serviceApi {
         })
     }
 
-    callScreenshots(query: string){
+    callScreenshots(query: string) {
         return axios.get(`${BaseUrl}?key=${process.env.NEXT_PUBLIC_KEY}`, {
             params: {
                 search: query
@@ -97,17 +119,6 @@ class serviceApi {
             }
         })
     }
-
-    callTest(genres: string, page: number, pageSize:number) {
-        return axios.get(`${BaseUrl}?key=${process.env.NEXT_PUBLIC_KEY}`, {
-            params: {
-                genres: genres,
-                page: page,
-                page_size:pageSize,
-            }
-        })
-    }
-
 }
 
 const Service = new serviceApi();
