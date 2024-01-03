@@ -10,12 +10,11 @@ import { useEffect, useState } from "react";
 export default function Devices() {
     const [devices, setDecive] = useState<Device[]>([])
 
+
     useEffect(() => {
         Service.callPlatform()
             .then((res) => {
                 setDecive(res.data.results)
-                console.log(res.data.results);
-
             })
             .catch((err) => {
                 console.error(err);

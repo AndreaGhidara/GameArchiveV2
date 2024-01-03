@@ -20,9 +20,6 @@ function Sidebar() {
                     </ul>
                 </div>
             </div>
-            <div>
-                <ChangeTheme />
-            </div>
         </div>
     )
 }

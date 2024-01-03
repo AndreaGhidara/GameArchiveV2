@@ -13,7 +13,6 @@ export default function Generes() {
     useEffect(() => {
         Service.callCategories()
             .then((res) => {
-                console.log(res.data.results);
                 setGeneres(res.data.results)
             })
             .catch((err) => {

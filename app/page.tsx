@@ -14,9 +14,7 @@ export default function Home() {
     Service.callNewGamesRelase()
       .then((res) => {
         setNewRelase(res.data.results)
-        console.log(res);
         
-
       })
       .catch((err) => {
         console.log(err);
@@ -44,7 +42,6 @@ export default function Home() {
     Service.topMetacriticGame()
       .then((res) => {
         setTopMetacriticGame(res.data.results)
-        console.log(res.data.results)
       })
       .catch((err) => {
         console.log(err);

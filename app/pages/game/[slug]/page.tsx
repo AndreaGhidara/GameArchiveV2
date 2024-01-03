@@ -1,6 +1,5 @@
 'use client'
 
-
 import { Games } from '@/app/types';
 import Service from '@/service';
 import { useEffect, useState } from 'react';
@@ -15,7 +14,6 @@ export default function Game({ params }: { params: { slug: number } }) {
     useEffect(() => {
         Service.callGameinfo(params.slug)
             .then((res) => {
-                console.log(res.data);
                 setGame(res.data)
             })
             .catch((err) => {
@@ -23,12 +21,12 @@ export default function Game({ params }: { params: { slug: number } }) {
             })
     }, [])
 
-    useEffect(() => {
-        console.log(game?.developers);
-        console.log(game?.developers?.map((item, index) => (
-            item.name
-        )));
-    }, [game])
+    // useEffect(() => {
+    //     console.log(game?.developers);
+    //     console.log(game?.developers?.map((item, index) => (
+    //         item.name
+    //     )));
+    // }, [game])
 
     const useIconPlatform = (name: string | undefined) => {
         if (name) {
@@ -180,21 +178,6 @@ export default function Game({ params }: { params: { slug: number } }) {
                     </div>
                 ))}
             </div>
-            <div className="divider">
-                <h1 className='text-xl font-bold'>Add to favorite</h1>
-            </div>
-            <div className='flex justify-center'>
-                <button className='btn btn-primary'>
-                    Add to favorite
-                </button>
-            </div>
         </div>
     )
 }
-
-{/* <p>Metacritic</p>
-<p>website</p>
-<p>rating</p>
-<p>Generes</p>
-<p>Developer</p>
-<p>Description</p> */}

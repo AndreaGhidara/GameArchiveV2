@@ -6,17 +6,18 @@ import Service from "@/service";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-
 export default function Genre({ params }: { params: { slug: number } }) {
     const [games, setGames] = useState<GameCard[]>([]);
     const [pages, setPages] = useState(1);
-    console.log(games);
+
+    const upPage = () => {
+        document.getElementById("top")?.scrollIntoView()
+    }
 
     useEffect(() => {
         Service.callSpecificCategory(params.slug, pages)
             .then((res) => {
                 setGames(res.data.results);
-                console.log(res.data);
 
             })
             .catch((err) => {
@@ -28,9 +29,11 @@ export default function Genre({ params }: { params: { slug: number } }) {
     const nextPage = () => {
         if (pages === 500) {
             setPages(500);
+
         } else {
-            setPages(pages + 1)
+            setPages(pages + 1);
         }
+        upPage()
     }
 
     const prevPage = () => {
@@ -39,11 +42,16 @@ export default function Genre({ params }: { params: { slug: number } }) {
         } else {
             setPages(pages - 1)
         }
+        upPage()
     }
+
+
+
 
 
     return (
         <div className="max-h-full overflow-auto pb-2">
+            <div id="top">TOP</div>
             <div className='container mx-auto px-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
                 {games.map((game, index) => (
                     <div className='h-[320px] py-5' key={index}>
@@ -58,6 +66,7 @@ export default function Genre({ params }: { params: { slug: number } }) {
                     <button onClick={nextPage} className="join-item btn">»</button>
                 </div>
             </div>
+
         </div>
     )
 }
